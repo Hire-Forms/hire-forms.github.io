@@ -64,8 +64,20 @@ h3
 			box-shadow 0 1px 4px #999
 
 
-input.hire-input
-	input-style()
+.hire-input
+	input
+		input-style()
+
+	&.invalid
+		input
+			border 1px solid red
+
+	.hire-forms-invalid-message
+		position absolute
+		color red
+		font-size 0.8em
+		font-style italic
+		padding-left 6px
 
 .hire-mutable-list, .hire-combo-list
 	box-shadow 0 1px 4px #999

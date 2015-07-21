@@ -8,6 +8,16 @@ import Input from "hire-forms-input";
 import Select from "hire-forms-select";
 import SelectList from "hire-forms-select-list";
 
+let validateNumbersOnly = function(value) {
+	let re = /^\d+$/;
+	let isValid = re.test(value);
+
+	return {
+		isValid: isValid,
+		message: isValid ? "" : "Only numbers are allowed."
+	};
+};
+
 class App extends React.Component {
 	constructor(props) {
 		super(props);
@@ -51,9 +61,16 @@ class App extends React.Component {
 				<div className="elements">
 					<h2>Input</h2>
 					<div className="element-type">
+						<h3>Default</h3>
 						<Input
 							onChange={this.handleChange.bind(this)}
 							placeholder="Enter value..."
+							value={this.state.value} />
+						<h3>With validation (numbers only)</h3>
+						<Input
+							onChange={this.handleChange.bind(this)}
+							placeholder="Enter value..."
+							validate={validateNumbersOnly}
 							value={this.state.value} />
 					</div>
 
