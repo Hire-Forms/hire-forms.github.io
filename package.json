@@ -1,0 +1,44 @@
+{
+  "name": "hire-forms.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "browser-sync start --server --files \"build\"",
+    "watch": "scripts/watch.sh",
+    "build": "scripts/build.sh",
+    "build:libs": "scripts/build-libs.sh",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hire-forms/hire-forms.github.io"
+  },
+  "author": "gijsjan.brouwer@huygens.knaw.nl (https://github.com/Gijsjan)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hire-forms/hire-forms.github.io/issues"
+  },
+  "homepage": "https://github.com/hire-forms/hire-forms.github.io",
+  "dependencies": {
+    "babel-core": "^5.7.4",
+    "babel-plugin-object-assign": "^1.2.0",
+    "babelify": "^6.1.3",
+    "classnames": "^2.1.3",
+    "hire-forms-input": "^1.0.2",
+    "hire-forms-list": "^1.0.2",
+    "hire-forms-mutable-list": "^1.0.0",
+    "hire-forms-select": "^1.0.2",
+    "hire-forms-select-list": "^1.0.2",
+    "immutable": "^3.7.4",
+    "react": "^0.13.3",
+    "react-router": "^0.13.3"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.8.0",
+    "browserify": "^11.0.0",
+    "hire-forms-list": "^1.0.2",
+    "stylus": "^0.52.0",
+    "watchify": "^3.3.0"
+  }
+}
