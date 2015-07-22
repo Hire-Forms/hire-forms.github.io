@@ -30,6 +30,7 @@
     "hire-forms-mutable-list": "^1.0.0",
     "hire-forms-select": "^1.0.2",
     "hire-forms-select-list": "^1.0.2",
+    "hire-forms-utils": "^1.1.0",
     "immutable": "^3.7.4",
     "react": "^0.13.3",
     "react-router": "^0.13.3"

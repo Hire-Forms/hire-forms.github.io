@@ -153,3 +153,26 @@ h3
 .hire-locality
 	.hire-select
 		inline-block()
+
+.hire-list-filter, .hire-forms-autocomplete
+	.hire-options
+		span.highlight
+			font-weight bold
+
+.hire-list-filter
+	.hire-input
+		input-style()
+
+	.hire-options
+		position static
+		width 100%
+		border-top 0
+
+.hire-forms-autocomplete
+	.hire-input
+		input-style()
+
+	.hire-options
+		top auto
+		border-top 0
+		width 100%

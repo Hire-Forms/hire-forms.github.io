@@ -7,6 +7,10 @@ import List from "hire-forms-list";
 import Input from "hire-forms-input";
 import Select from "hire-forms-select";
 import SelectList from "hire-forms-select-list";
+import ListFilter from "hire-forms-list-filter";
+import Autocomplete from "hire-forms-autocomplete";
+
+import {castKeyValueArray} from "hire-forms-utils";
 
 let validateNumbersOnly = function(value) {
 	let re = /^\d+$/;
@@ -23,6 +27,7 @@ class App extends React.Component {
 		super(props);
 
 		this.state = {
+			keyvalue: {},
 			value: "",
 			values: [],
 			options: ["Zondag", "Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag"]
@@ -41,11 +46,16 @@ class App extends React.Component {
 		this.setState({value: value});
 	}
 
+	handleKeyValueChange(value) {
+		this.setState({keyvalue: value});
+	}
+
 	handleValuesChange(values) {
 		this.setState({values: values});
 	}
 
 	render() {
+		console.log(this.state.options, this.state.value);
 		return (
 			<div className="showcase">
 				<h1>Hire Forms Showcase</h1>
@@ -59,6 +69,36 @@ class App extends React.Component {
 					</ol>
 				*/}
 				<div className="elements">
+					<h2>Autocomplete</h2>
+					<div className="element-type inputs">
+						<h3>Default</h3>
+						<div className="input-container">
+							<Autocomplete
+								onChange={this.handleKeyValueChange.bind(this)}
+								options={castKeyValueArray(this.state.options)}
+								placeholder="Start typing for instant suggestions..."
+								value={this.state.keyvalue} />
+						</div>
+						{/*
+							<h3>Async</h3>
+							<div className="input-container">
+								<Autocomplete
+									async={this}
+									onChange={this.handleValueChange.bind(this)}
+									placeholder="Start typing for async suggestions..."
+									value={this.state.value} />
+							</div>
+						*/}
+					</div>
+					<h2>List filter</h2>
+					<div className="element-type">
+						<ListFilter
+							onChange={this.handleChange.bind(this)}
+							options={this.state.options}
+							placeholder="Enter value..."
+							value={this.state.value} />
+					</div>
+
 					<h2>Input</h2>
 					<div className="element-type">
 						<h3>Default</h3>
@@ -80,6 +120,7 @@ class App extends React.Component {
 							<Select
 								onChange={this.handleChange.bind(this)}
 								options={this.state.options}
+								placeholder="Select value..."
 								sortRelevance={false}
 								value={this.state.value} />
 						</div>
@@ -93,27 +134,6 @@ class App extends React.Component {
 							values={this.state.values} />
 					</div>
 
-					{/*
-						<h2>Autocomplete</h2>
-						<div className="element-type inputs">
-							<h3>Default</h3>
-							<div className="input-container">
-								<Autocomplete
-									onChange={this.handleValueChange.bind(this)}
-									options={this.state.options}
-									placeholder="Start typing for instant suggestions..."
-									value={this.state.value} />
-							</div>
-							<h3>Async</h3>
-							<div className="input-container">
-								<Autocomplete
-									async={this}
-									onChange={this.handleValueChange.bind(this)}
-									placeholder="Start typing for async suggestions..."
-									value={this.state.value} />
-							</div>
-						</div>
-					*/}
 
 					<h2>List</h2>
 					<div className="element-type lists">
