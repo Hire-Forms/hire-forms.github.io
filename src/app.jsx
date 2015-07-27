@@ -55,7 +55,6 @@ class App extends React.Component {
 	}
 
 	render() {
-		console.log(this.state.options, this.state.value);
 		return (
 			<div className="showcase">
 				<h1>Hire Forms Showcase</h1>
@@ -116,14 +115,20 @@ class App extends React.Component {
 
 					<h2>Select</h2>
 					<div className="element-type">
-						<div className="input-container">
-							<Select
-								onChange={this.handleChange.bind(this)}
-								options={this.state.options}
-								placeholder="Select value..."
-								sortRelevance={false}
-								value={this.state.value} />
-						</div>
+						<h3>Default</h3>
+						<Select
+							onChange={this.handleChange.bind(this)}
+							options={this.state.options}
+							placeholder="Select value..."
+							sortRelevance={false}
+							value={this.state.value} />
+						<h3>Async</h3>
+						<Select
+							async={(done) => {setTimeout(() => done(this.state.options), 2000)}}
+							onChange={this.handleChange.bind(this)}
+							placeholder="Select value..."
+							sortRelevance={false}
+							value={this.state.value} />
 					</div>
 
 					<h2>Select list</h2>
