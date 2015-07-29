@@ -9,6 +9,7 @@ import Select from "hire-forms-select";
 import SelectList from "hire-forms-select-list";
 import ListFilter from "hire-forms-list-filter";
 import Autocomplete from "hire-forms-autocomplete";
+import AutocompleteList from "hire-forms-autocomplete-list";
 
 import {castKeyValueArray} from "hire-forms-utils";
 
@@ -27,9 +28,13 @@ class App extends React.Component {
 		super(props);
 
 		this.state = {
-			keyvalue: {},
 			value: "",
+			keyvalue: {
+				key: "",
+				value: ""
+			},
 			values: [],
+			keyvalues: [],
 			options: ["Zondag", "Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag"]
 		};
 	}
@@ -50,7 +55,12 @@ class App extends React.Component {
 		this.setState({keyvalue: value});
 	}
 
+	handleKeyValueListChange(list) {
+		this.setState({keyvalues: list});
+	}
+
 	handleValuesChange(values) {
+		console.log(values);
 		this.setState({values: values});
 	}
 
@@ -75,7 +85,7 @@ class App extends React.Component {
 							<Autocomplete
 								onChange={this.handleKeyValueChange.bind(this)}
 								options={castKeyValueArray(this.state.options)}
-								placeholder="Start typing for instant suggestions..."
+								placeholder="Search..."
 								value={this.state.keyvalue} />
 						</div>
 						{/*
@@ -89,12 +99,21 @@ class App extends React.Component {
 							</div>
 						*/}
 					</div>
+					<h2>Autocomplete List</h2>
+					<div className="element-type inputs">
+						<h3>Default</h3>
+						<AutocompleteList
+							onChange={this.handleKeyValueListChange.bind(this)}
+							options={castKeyValueArray(this.state.options)}
+							placeholder="Search..."
+							values={this.state.keyvalues} />
+					</div>
 					<h2>List filter</h2>
 					<div className="element-type">
 						<ListFilter
 							onChange={this.handleChange.bind(this)}
 							options={this.state.options}
-							placeholder="Enter value..."
+							placeholder="Search list..."
 							value={this.state.value} />
 					</div>
 
@@ -133,10 +152,21 @@ class App extends React.Component {
 
 					<h2>Select list</h2>
 					<div className="element-type lists">
+						<h3>String</h3>
 						<SelectList
 							onChange={this.handleValuesChange.bind(this)}
 							options={this.state.options}
 							values={this.state.values} />
+						<h3>Key/value</h3>
+						<SelectList
+							onChange={this.handleKeyValueListChange.bind(this)}
+							options={castKeyValueArray(this.state.options)}
+							values={this.state.keyvalues} />
+						<h3>Async</h3>
+						<SelectList
+							async={(done) => {setTimeout(() => done(castKeyValueArray(this.state.options)), 1000)}}
+							onChange={this.handleKeyValueListChange.bind(this)}
+							values={this.state.keyvalues} />
 					</div>
 
 
